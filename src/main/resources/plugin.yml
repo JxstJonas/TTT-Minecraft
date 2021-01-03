@@ -1,0 +1,4 @@
+name: TTT
+version: ${project.version}
+main: net.vergessxner.ttt.TTT
+api-version: 1.16
