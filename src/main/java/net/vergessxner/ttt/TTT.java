@@ -6,7 +6,7 @@ public final class TTT extends JavaPlugin {
 
     public static String PREFIX = "";
     private static TTT instance;
-    
+
 
     @Override
     public void onEnable() {
