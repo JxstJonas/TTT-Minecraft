@@ -11,6 +11,4 @@ public interface IGameState {
     void start();
     void stop();
 
-    String getString();
-
 }

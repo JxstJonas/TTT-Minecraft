@@ -19,9 +19,4 @@ public class EndingState implements IGameState {
     public void stop() {
 
     }
-
-    @Override
-    public String getString() {
-        return null;
-    }
 }

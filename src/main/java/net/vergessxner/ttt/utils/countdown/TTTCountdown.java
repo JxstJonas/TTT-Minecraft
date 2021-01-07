@@ -3,6 +3,7 @@ package net.vergessxner.ttt.utils.countdown;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 
 /**
  * @author Jonas
@@ -14,7 +15,7 @@ public abstract class TTTCountdown {
 
     private final int maxTime;
     private int time;
-    protected boolean running = false;
+    private boolean running = false;
     private BukkitTask task;
 
     public TTTCountdown(int maxTime) {
@@ -25,17 +26,7 @@ public abstract class TTTCountdown {
     private final ArrayList<Runnable> stopFunctions = new ArrayList<>();
     private final ArrayList<Runnable> finishFunction = new ArrayList<>();
 
-    public boolean isRunning() {
-        return running;
-    }
-
-    public int getTime() {
-        return time;
-    }
-    public int setTime(int time) {
-        this.time = time;
-        return time;
-    }
+    public abstract void startCountdown();
 
     public void stopCountdown() {
         running = false;
@@ -45,17 +36,37 @@ public abstract class TTTCountdown {
             task.cancel();
             task = null;
         }
+
     }
 
-    public ArrayList<Runnable> getStartFunctions() {
+
+    public boolean isRunning() {
+        return running;
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public int setTime(int time) {
+        this.time = time;
+        return time;
+    }
+
+
+    protected ArrayList<Runnable> getStartFunctions() {
         return startFunctions;
     }
 
-    public ArrayList<Runnable> getStopFunctions() {
+    protected ArrayList<Runnable> getStopFunctions() {
         return stopFunctions;
     }
 
-    public ArrayList<Runnable> getFinishFunction() {
+    protected ArrayList<Runnable> getFinishFunction() {
         return finishFunction;
     }
 
@@ -79,6 +90,5 @@ public abstract class TTTCountdown {
         finishFunction.add(runnable);
     }
 
-    abstract void startCountdown();
 
 }

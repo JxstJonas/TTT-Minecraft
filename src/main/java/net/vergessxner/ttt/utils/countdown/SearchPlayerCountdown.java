@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitTask;
  * Class: SearchPlayerCountdown
  */
 
-public class SearchPlayerCountdown extends TTTCountdown{
+public class SearchPlayerCountdown extends TTTCountdown {
 
     private BukkitTask task;
 
@@ -21,13 +21,14 @@ public class SearchPlayerCountdown extends TTTCountdown{
 
     @Override
     public void startCountdown() {
-        running = true;
+        setRunning(true);
         if(!getStartFunctions().isEmpty())
             getStartFunctions().forEach(Runnable::run);
         task = new BukkitRunnable() {
             @Override
             public void run() {
-                Bukkit.broadcastMessage(TTT.PREFIX + "");
+                if(!(Bukkit.getOnlinePlayers().size() >= TTT.getInstance().getGameSettings().getMinPlayer()))
+                    Bukkit.broadcastMessage(TTT.PREFIX + "§7Es werden noch §c" + (TTT.getInstance().getGameSettings().getMinPlayer() - Bukkit.getOnlinePlayers().size()) + " Spieler benötigt bevor die Runder startet");
             }
         }.runTaskTimerAsynchronously(TTT.getInstance(), 0, 20*30);
     }

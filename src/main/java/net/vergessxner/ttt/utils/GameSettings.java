@@ -8,22 +8,21 @@ package net.vergessxner.ttt.utils;
 
 public class GameSettings {
 
-    private int maxPlayer;
-    private int minPlayer;
+    private final int maxPlayer;
+    private final int minPlayer;
+
+
+    public GameSettings(int maxPlayer, int minPlayer) {
+        this.maxPlayer = maxPlayer;
+        this.minPlayer = minPlayer;
+    }
 
     public int getMaxPlayer() {
         return maxPlayer;
-    }
-
-    public void setMaxPlayer(int maxPlayer) {
-        this.maxPlayer = maxPlayer;
     }
 
     public int getMinPlayer() {
         return minPlayer;
     }
 
-    public void setMinPlayer(int minPlayer) {
-        this.minPlayer = minPlayer;
-    }
 }

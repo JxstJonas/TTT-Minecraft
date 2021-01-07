@@ -20,8 +20,4 @@ public class InGameState implements IGameState {
 
     }
 
-    @Override
-    public String getString() {
-        return null;
-    }
 }

@@ -15,14 +15,18 @@ import org.bukkit.scheduler.BukkitTask;
 public class StartLobbyCountdown extends TTTCountdown {
 
     private BukkitTask task;
+    private TTTCountdown searchCD;
 
-    public StartLobbyCountdown(int cdTime) {
+    public StartLobbyCountdown(int cdTime, TTTCountdown searchCD) {
         super(cdTime);
+        this.searchCD = searchCD;
     }
 
     @Override
     public void startCountdown() {
-        running = true;
+        if(searchCD.isRunning()) searchCD.stopCountdown();
+
+        setRunning(true);
         if(!getStartFunctions().isEmpty())
             getStartFunctions().forEach(Runnable::run);
         setTime(getMaxTime());
